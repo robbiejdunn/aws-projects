@@ -6,7 +6,8 @@ Simple hello world lambda deployed through terraform.
 
 ```sh
 terraform init
-terraform 
+terraform validate
 terraform apply
+aws lambda invoke --region=eu-west-2 --function-name=$(terraform output -raw function_name) response.json
 terraform destroy
 ```
