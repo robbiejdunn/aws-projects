@@ -1,19 +1,17 @@
-# Copyright (c) HashiCorp, Inc.
-# SPDX-License-Identifier: MPL-2.0
-
 provider "aws" {
   region = var.aws_region
 
   default_tags {
     tags = {
-      hashicorp-learn = "lambda-api-gateway"
+      Environment = "dev"
+      Project = "hello-world"
     }
   }
 
 }
 
 resource "random_pet" "lambda_bucket_name" {
-  prefix = "learn-terraform-functions"
+  prefix = "hello-world-lambda-bucket"
   length = 4
 }
 
@@ -57,8 +55,8 @@ resource "aws_lambda_function" "hello_world" {
   s3_bucket = aws_s3_bucket.lambda_bucket.id
   s3_key    = aws_s3_object.lambda_hello_world.key
 
-  runtime = "nodejs20.x"
-  handler = "hello.handler"
+  runtime = "python3.12"
+  handler = "hello.lambda_handler"
 
   source_code_hash = data.archive_file.lambda_hello_world.output_base64sha256
 
