@@ -5,8 +5,8 @@ Simple hello world lambda deployed through terraform.
 ## Usage
 
 ```sh
-TODO
+terraform init
+terraform 
+terraform apply
+terraform destroy
 ```
-
-## Notes
-- https://github.com/terraform-aws-modules/terraform-aws-lambda - useful for deploying lambdas?
