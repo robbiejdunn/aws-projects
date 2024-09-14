@@ -1,13 +1,3 @@
 # hello-world
 
-Simple hello world lambda deployed through terraform.
-
-## Usage
-
-```sh
-terraform init
-terraform validate
-terraform apply
-aws lambda invoke --region=eu-west-2 --function-name=$(terraform output -raw function_name) response.json
-terraform destroy
-```
+Simple hello world python lambda & API gateway deployed through terraform. Inspired by the terraform demo followed from https://developer.hashicorp.com/terraform/tutorials/aws/lambda-api-gateway.
