@@ -1,5 +1,9 @@
 # aws-projects
 
+System design solutions to ML problems from Kaggle:
+- hello-world - simple hello world example to become familiar with terraform. Provisions a python lambda function & API gateway.
+- mushroom-classification - classification of mushrooms based on some given features (https://www.kaggle.com/datasets/uciml/mushroom-classification).
+
 ## Requirements
 
 - AWS account.
