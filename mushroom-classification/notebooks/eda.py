@@ -1,5 +1,28 @@
-# %%
-mushroom_data = {
+# %% [markdown]
+
+# # Mushroom classification EDA VSCode Notebook
+
+# %% # Imports
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+plt.style.use("ggplot")
+
+# %% # Read data into pandas Dataframe
+data_location = "../data/mushrooms.csv"
+mushrooms = pd.read_csv(data_location)
+mushrooms.head(5)
+
+# %% # Basic dataframe analysis
+mushrooms.info()
+
+# %% [markdown]
+
+# No null values, all features are categorical.
+
+# %% # Replace feature values with their full names
+# mappings written manually based on Kaggle data explorer
+feature_value_mappings = {
     "class": {"e": "edible", "p": "poisonous"},
     "cap-shape": {"b": "bell", "c": "conical", "x": "convex", "f": "flat", "k": "knobbed", "s": "sunken"},
     "cap-surface": {"f": "fibrous", "g": "grooves", "y": "scaly", "s": "smooth"},
@@ -24,7 +47,24 @@ mushroom_data = {
     "population": {"a": "abundant", "c": "clustered", "n": "numerous", "s": "scattered", "v": "several", "y": "solitary"},
     "habitat": {"g": "grasses", "l": "leaves", "m": "meadows", "p": "paths", "u": "urban", "w": "waste", "d": "woods"}
 }
-mushroom_data
+for column, mapping in feature_value_mappings.items():
+    if column in mushrooms.columns:
+        mushrooms[column] = mushrooms[column].replace(mapping)
+    else:
+        print(f"Column {column} not found in mushrooms.csv")
+mushrooms.head(5)
 
+# %%
+print(mushrooms["class"].value_counts())
+print()
+print(mushrooms["class"].value_counts() / len(mushrooms))
+sns.countplot(mushrooms["class"])
+plt.title("target variable")
+
+# %% [markdown]
+
+# # Target variable analysis
+#
+# Fairly balanced target variable (51% edible 48% poisonous).
 
 # %%

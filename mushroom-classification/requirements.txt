@@ -1,1 +1,6 @@
+# required for VS notebooks
 ipykernel==6.29.5
+notebook==7.2.2
+# other requirements
+pandas==2.2.3
+seaborn==0.13.2
