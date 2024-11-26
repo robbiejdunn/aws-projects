@@ -1,26 +1,28 @@
 # %% [markdown]
-
 # # Mushroom classification EDA VSCode Notebook
 
-# %% # Imports
+# %%
+# Imports
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 plt.style.use("ggplot")
 
-# %% # Read data into pandas Dataframe
+# %%
+# Read data into pandas Dataframe
 data_location = "../data/mushrooms.csv"
 mushrooms = pd.read_csv(data_location)
 mushrooms.head(5)
 
-# %% # Basic dataframe analysis
+# %%
+# Basic dataframe analysis
 mushrooms.info()
 
 # %% [markdown]
-
 # No null values, all features are categorical.
 
-# %% # Replace feature values with their full names
+# %%
+# Replace feature values with their full names
 # mappings written manually based on Kaggle data explorer
 feature_value_mappings = {
     "class": {"e": "edible", "p": "poisonous"},
@@ -55,6 +57,7 @@ for column, mapping in feature_value_mappings.items():
 mushrooms.head(5)
 
 # %%
+# Target variable analysis
 print(mushrooms["class"].value_counts())
 print()
 print(mushrooms["class"].value_counts() / len(mushrooms))
@@ -62,9 +65,31 @@ sns.countplot(mushrooms["class"])
 plt.title("target variable")
 
 # %% [markdown]
-
 # # Target variable analysis
 #
 # Fairly balanced target variable (51% edible 48% poisonous).
+
+# %%
+# All features univariate analysis
+for column in mushrooms:
+    if column == "class":
+        continue
+    plt.figure(figsize=(20,4))
+    plt.subplot(121)
+    mushrooms[column].value_counts().plot(kind="bar")
+    plt.xlabel(column)
+    plt.ylabel("count")
+    plt.title(column)
+
+# %%
+# Bivariate analysis of features with the target variable
+for column in mushrooms:
+    if column == "class":
+        continue
+    plt.figure(figsize=(20,4))
+    plt.subplot(121)
+    sns.countplot(mushrooms, x=column, hue="class")
+    plt.title(column)    
+    plt.xticks(rotation=90)
 
 # %%
