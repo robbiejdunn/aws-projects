@@ -36,5 +36,5 @@ terraform.rc
 # Ignore python virtual environment
 venv
 
-# Ignore mushrooms.csv file
-data/mushrooms.csv
+# Ignore creditcard.csv file
+data/creditcard.csv
